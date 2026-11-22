@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online Shoppers Purchasing Intention Prediction | ML Project</title>
+<meta name="description" content="Machine Learning classification project predicting online shoppers' purchasing intention with Logistic Regression, Decision Tree and Random Forest.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a href="#hero" class="brand">ML&nbsp;Project</a>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav id="menu">
+      <a href="#overview">Overview</a><a href="#problem">Objectives</a><a href="#dataset">Dataset</a>
+      <a href="#eda">EDA</a><a href="#method">Method</a><a href="#algorithms">Algorithms</a>
+      <a href="#performance">Performance</a><a href="#evaluation">Evaluation</a>
+      <a href="#discussion">Discussion</a><a href="#conclusion">Conclusion</a><a href="#references">References</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="hero">
+  <div class="wrap hero-in">
+    <div>
+      <div class="tags"><span class="tag">Machine Learning · Binary Classification</span><span class="tag alt">UCI Dataset</span></div>
+      <h1>Online Shoppers Purchasing Intention Prediction Using Machine Learning</h1>
+      <p class="lead">Predicting whether a website visitor will complete a purchase from browsing-session behavior, comparing Logistic Regression, Decision Tree and Random Forest.</p>
+      <p class="meta">Dataset: Online Shoppers Purchasing Intention Dataset · UCI Machine Learning Repository</p>
+      <div class="btns"><a class="btn" href="#performance">View Results</a><a class="btn ghost" href="#overview">Explore Project</a></div>
+    </div>
+    <div class="hero-card">
+      <div class="stat"><b>12,205</b><span>sessions after cleaning</span></div>
+      <div class="stat"><b>3</b><span>algorithms compared</span></div>
+      <div class="stat"><b>89.84%</b><span>best accuracy (Random Forest)</span></div>
+      <div class="stat"><b>0.9272</b><span>best ROC-AUC (Random Forest)</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="overview"><div class="wrap">
+  <p class="eyebrow">01 · Overview</p><h2>Project Overview</h2>
+  <div class="grid g3">
+    <article class="card"><h3>About the project</h3><p>A Machine Learning classification system built on the Online Shoppers Purchasing Intention Dataset. It analyzes browsing activity, page durations, visitor types and other session information, and compares three classifiers using several metrics.</p></article>
+    <article class="card"><h3>Why it matters</h3><p>Millions of people visit online shops, but not every visitor buys. Understanding purchasing behavior helps businesses improve marketing strategies and customer experience.</p></article>
+    <article class="card"><h3>What ML contributes</h3><p>Machine Learning analyzes large amounts of historical session data, finds patterns linked to purchasing and non-purchasing behavior, and uses them to predict customer behavior.</p></article>
+  </div>
+</div></section>
+
+<section id="problem" class="alt"><div class="wrap">
+  <p class="eyebrow">02 · Problem &amp; Objectives</p><h2>Problem Statement and Objectives</h2>
+  <blockquote class="quote">Online shopping websites receive many visitors, but only a small proportion complete purchases. Without proper analysis of behavior, businesses struggle to identify visitors who are more likely to buy. This project develops a Machine Learning model that analyzes session information and predicts whether a visitor will make a purchase.</blockquote>
+  <ol class="grid g2 obj" id="objectives">
+    <li>Collect and understand a relevant dataset suitable for classification.</li>
+    <li>Explore and analyze online shoppers' browsing behavior.</li>
+    <li>Identify important features related to purchasing intentions.</li>
+    <li>Perform data cleaning and preprocessing.</li>
+    <li>Conduct Exploratory Data Analysis using statistics and visualizations.</li>
+    <li>Implement Logistic Regression, Decision Tree and Random Forest.</li>
+    <li>Train and test the selected models.</li>
+    <li>Evaluate performance using appropriate classification metrics.</li>
+    <li>Compare the performance of the implemented algorithms.</li>
+    <li>Identify the most suitable model for predicting purchasing intentions.</li>
+  </ol>
+</div></section>
+
+<section id="dataset"><div class="wrap">
+  <p class="eyebrow">03 · Dataset</p><h2>Dataset Description</h2>
+  <div class="grid g4">
+    <div class="kpi"><b>12,330</b><span>original records</span></div>
+    <div class="kpi"><b>125</b><span>duplicates removed</span></div>
+    <div class="kpi"><b>12,205</b><span>cleaned records</span></div>
+    <div class="kpi"><b>17 + 1</b><span>features + target</span></div>
+  </div>
+  <div class="grid g2 mt">
+    <article class="card">
+      <h3>Source &amp; target</h3>
+      <p><b>Source:</b> UCI Machine Learning Repository. <a href="https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset" target="_blank" rel="noopener">Open the original dataset ↗</a></p>
+      <p><b>Target variable: Revenue.</b> <code>True</code> = the visitor completed a purchase; <code>False</code> = no purchase. Class counts in the cleaned data: 10,297 No Purchase (84.37%) and 1,908 Purchase (15.63%).</p>
+      <p><b>Problem type:</b> supervised Binary Classification (Purchase vs. No Purchase). The dataset has both numerical and categorical features and contains no missing values.</p>
+    </article>
+    <article class="card">
+      <h3>Preprocessing</h3>
+      <ul class="clean">
+        <li>Loaded into a Pandas DataFrame; no missing values found.</li>
+        <li>125 exact duplicates removed with <code>drop_duplicates()</code>.</li>
+        <li>Features (X, 17 columns) separated from target (y = Revenue).</li>
+        <li>Numerical (14): median imputation + <code>StandardScaler</code>.</li>
+        <li>Categorical (Month, VisitorType, Weekend): most-frequent imputation + One-Hot Encoding.</li>
+        <li>80/20 stratified split, <code>random_state=42</code>: 9,764 training and 2,441 test rows.</li>
+      </ul>
+    </article>
+  </div>
+  <h3 class="mt">Dataset attributes</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Feature</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Administrative</td><td>Number of administrative pages visited</td></tr>
+      <tr><td>Administrative_Duration</td><td>Time spent on administrative pages</td></tr>
+      <tr><td>Informational</td><td>Number of informational pages visited</td></tr>
+      <tr><td>Informational_Duration</td><td>Time spent on informational pages</td></tr>
+      <tr><td>ProductRelated</td><td>Number of product-related pages visited</td></tr>
+      <tr><td>ProductRelated_Duration</td><td>Time spent on product-related pages</td></tr>
+      <tr><td>BounceRates</td><td>Bounce rate of the session</td></tr>
+      <tr><td>ExitRates</td><td>Exit rate of the session</td></tr>
+      <tr><td>PageValues</td><td>Average value of pages visited</td></tr>
+      <tr><td>SpecialDay</td><td>Closeness of the visit to a special shopping day</td></tr>
+      <tr><td>Month</td><td>Month of the website visit</td></tr>
+      <tr><td>OperatingSystems</td><td>Operating system category</td></tr>
+      <tr><td>Browser</td><td>Browser category</td></tr>
+      <tr><td>Region</td><td>Geographic region category</td></tr>
+      <tr><td>TrafficType</td><td>Traffic source category</td></tr>
+      <tr><td>VisitorType</td><td>Type of website visitor</td></tr>
+      <tr><td>Weekend</td><td>Whether the visit occurred on a weekend</td></tr>
+      <tr><td><b>Revenue</b> (target)</td><td>Whether a purchase was completed</td></tr>
+    </tbody></table></div>
+</div></section>
+
+<section id="eda" class="alt"><div class="wrap">
+  <p class="eyebrow">04 · EDA</p><h2>Exploratory Data Analysis</h2>
+  <p class="sub">All figures below are the original plots from the project report and notebook.</p>
+  <div class="grid g2">
+    <figure class="card fig"><h3>Revenue Distribution</h3><p>Count plot of purchasing and non-purchasing sessions: 10,297 No Purchase vs. 1,908 Purchase, so the classes are imbalanced.</p><a href="assets/images/revenue-distribution.png" target="_blank"><img src="assets/images/revenue-distribution.png" alt="Revenue distribution count plot" loading="lazy"></a></figure>
+    <figure class="card fig"><h3>Monthly Visitor Distribution</h3><p>Number of sessions per month. May and November have the most sessions; February the fewest.</p><a href="assets/images/monthly-visitors.png" target="_blank"><img src="assets/images/monthly-visitors.png" alt="Visitors by month" loading="lazy"></a></figure>
+    <figure class="card fig"><h3>Revenue by Visitor Type</h3><p>Purchasing vs. non-purchasing sessions across Returning, New and Other visitors.</p><a href="assets/images/revenue-by-visitor-type.png" target="_blank"><img src="assets/images/revenue-by-visitor-type.png" alt="Revenue by visitor type" loading="lazy"></a></figure>
+    <figure class="card fig"><h3>Outlier Analysis</h3><p>Box plot of ProductRelated_Duration showing unusually high values compared with the general distribution.</p><a href="assets/images/outlier-analysis.png" target="_blank"><img src="assets/images/outlier-analysis.png" alt="Outlier box plot of product related duration" loading="lazy"></a></figure>
+  </div>
+  <figure class="card fig mt"><h3>Numerical Feature Histograms</h3><p>Histograms of the 14 numerical features reveal skewness; most duration and page-count features are heavily right-skewed.</p><a href="assets/images/numerical-histograms.png" target="_blank"><img src="assets/images/numerical-histograms.png" alt="Histograms of numerical features" loading="lazy"></a></figure>
+  <figure class="card fig mt"><h3>Correlation Heatmap</h3><p>Relationships between numerical features. The strongest are BounceRates–ExitRates (0.90) and ProductRelated–ProductRelated_Duration (0.86).</p><a href="assets/images/correlation-heatmap.png" target="_blank"><img src="assets/images/correlation-heatmap.png" alt="Correlation heatmap" loading="lazy"></a></figure>
+</div></section>
+
+<section id="method"><div class="wrap">
+  <p class="eyebrow">05 · Methodology</p><h2>Machine Learning Workflow</h2>
+  <ol class="flow">
+    <li><b>Dataset collection</b><span>UCI repository, 12,330 sessions</span></li>
+    <li><b>Data cleaning</b><span>Missing check, 125 duplicates removed</span></li>
+    <li><b>Preprocessing</b><span>Impute, scale, one-hot encode</span></li>
+    <li><b>EDA</b><span>Distributions, correlations, outliers</span></li>
+    <li><b>Train-test split</b><span>80% / 20%, stratified</span></li>
+    <li><b>Model training</b><span>Pipeline per algorithm</span></li>
+    <li><b>Model evaluation</b><span>5 metrics, confusion matrices, ROC</span></li>
+    <li><b>Best model</b><span>Random Forest selected</span></li>
+  </ol>
+</div></section>
+
+<section id="algorithms" class="alt"><div class="wrap">
+  <p class="eyebrow">06 · Algorithms</p><h2>Machine Learning Algorithms</h2>
+  <div class="grid g3" id="algo-cards"></div>
+</div></section>
+
+<section id="performance"><div class="wrap">
+  <p class="eyebrow">07 · Performance</p><h2>Model Performance Comparison</h2>
+  <p class="sub">Metrics computed on the 2,441-session test set. Random Forest is highlighted as the best overall model.</p>
+  <div class="grid g3" id="metric-cards"></div>
+  <div class="grid g2 mt">
+    <article class="card"><h3>Interactive comparison</h3>
+      <div class="chips" id="chips" role="tablist"></div>
+      <div id="bars" class="bars" aria-live="polite"></div></article>
+    <article class="card"><h3>Results table</h3>
+      <div class="table-wrap"><table id="results">
+        <thead><tr><th>Algorithm</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1-Score</th><th>ROC-AUC</th></tr></thead><tbody></tbody></table></div>
+      <p class="note">Best value per metric is highlighted. Logistic Regression has the highest recall; Random Forest is best on the other four.</p></article>
+  </div>
+  <figure class="card fig mt"><h3>Original grouped bar chart (from the report)</h3><a href="assets/images/model-comparison.png" target="_blank"><img src="assets/images/model-comparison.png" alt="Machine Learning model performance comparison" loading="lazy"></a></figure>
+</div></section>
+
+<section id="evaluation" class="alt"><div class="wrap">
+  <p class="eyebrow">08 · Evaluation</p><h2>Model Evaluation and Visualizations</h2>
+  <p class="sub">Confusion matrices (rows = actual, columns = predicted; 0 = No Purchase, 1 = Purchase).</p>
+  <div class="grid g3">
+    <figure class="card fig"><h3>Logistic Regression</h3><p>1778 TN · 281 FP · 82 FN · 300 TP</p><a href="assets/images/cm-logistic-regression.png" target="_blank"><img src="assets/images/cm-logistic-regression.png" alt="Logistic Regression confusion matrix" loading="lazy"></a></figure>
+    <figure class="card fig"><h3>Decision Tree</h3><p>1813 TN · 246 FP · 95 FN · 287 TP</p><a href="assets/images/cm-decision-tree.png" target="_blank"><img src="assets/images/cm-decision-tree.png" alt="Decision Tree confusion matrix" loading="lazy"></a></figure>
+    <figure class="card fig"><h3>Random Forest</h3><p>1938 TN · 121 FP · 127 FN · 255 TP</p><a href="assets/images/cm-random-forest.png" target="_blank"><img src="assets/images/cm-random-forest.png" alt="Random Forest confusion matrix" loading="lazy"></a></figure>
+  </div>
+  <div class="grid g2 mt">
+    <figure class="card fig"><h3>ROC Curve Comparison</h3><p>AUC: Logistic Regression 0.91, Decision Tree 0.86, Random Forest 0.93. Random Forest's curve sits highest at most thresholds.</p><a href="assets/images/roc-comparison.png" target="_blank"><img src="assets/images/roc-comparison.png" alt="ROC curve comparison" loading="lazy"></a></figure>
+    <figure class="card fig"><h3>Random Forest Feature Importance</h3><p>Top 15 features. PageValues dominates (about 0.406), followed by ExitRates (0.095) and ProductRelated_Duration (0.084).</p><a href="assets/images/feature-importance.png" target="_blank"><img src="assets/images/feature-importance.png" alt="Top 15 Random Forest feature importances" loading="lazy"></a></figure>
+  </div>
+</div></section>
+
+<section id="discussion"><div class="wrap">
+  <p class="eyebrow">09 · Discussion</p><h2>Best Model and Discussion</h2>
+  <div class="best"><span class="badge">Best overall model</span><h3>Random Forest</h3>
+    <p>Highest accuracy (0.8984), precision (0.6782), F1-score (0.6728) and ROC-AUC (0.9272). It was selected for its stronger overall performance across most evaluation metrics.</p></div>
+  <div class="grid g3 mt">
+    <article class="card"><h3>Recall vs. precision</h3><p>Logistic Regression has the highest recall (78.53%), so it found more of the actual purchasing sessions. Random Forest has higher precision and F1-score, a better balance between finding purchases and limiting incorrect positive predictions.</p></article>
+    <article class="card"><h3>Confusion matrices</h3><p>Random Forest correctly classified 1,938 non-purchasing and 255 purchasing sessions, with the fewest false positives (121) of the three models.</p></article>
+    <article class="card"><h3>Feature importance</h3><p>PageValues is the most influential feature in the Random Forest model, followed by ExitRates and ProductRelated_Duration.</p></article>
+  </div>
+</div></section>
+
+<section id="conclusion" class="alt"><div class="wrap">
+  <p class="eyebrow">10 · Conclusion</p><h2>Conclusion</h2>
+  <div class="grid g2">
+    <article class="card"><h3>What was achieved</h3><p>Three classifiers were implemented and evaluated on the Online Shoppers Purchasing Intention Dataset using Accuracy, Precision, Recall, F1-Score and ROC-AUC. The objectives of the experiment were successfully achieved. Random Forest was selected as the best overall model with 89.84% accuracy and an ROC-AUC of 0.9272.</p></article>
+    <article class="card"><h3>What was learned</h3><p>Different algorithms have different strengths in predicting purchasing behavior, and Machine Learning can help e-commerce businesses understand visitor behavior and predict purchasing intentions.</p></article>
+  </div>
+  <article class="card mt"><h3>Future work</h3><p>Additional algorithms and optimization techniques could be explored to further improve prediction performance.</p></article>
+</div></section>
+
+<section id="references"><div class="wrap">
+  <p class="eyebrow">11 · References</p><h2>References and Project Information</h2>
+  <div class="grid g2">
+    <article class="card"><h3>References</h3>
+      <ol class="refs">
+        <li>Sakar, C. O., &amp; Kastro, Y. (2018). Online Shoppers Purchasing Intention Dataset. UCI Machine Learning Repository. <a href="https://doi.org/10.24432/C5F88Q" target="_blank" rel="noopener">https://doi.org/10.24432/C5F88Q</a></li>
+        <li>Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. <i>Journal of Machine Learning Research, 12</i>, 2825–2830.</li>
+        <li>McKinney, W. (2010). Data Structures for Statistical Computing in Python. <i>Proceedings of the 9th Python in Science Conference</i>.</li>
+        <li>Harris, C. R., et al. (2020). Array programming with NumPy. <i>Nature, 585</i>, 357–362.</li>
+        <li>Hunter, J. D. (2007). Matplotlib: A 2D Graphics Environment. <i>Computing in Science &amp; Engineering, 9</i>(3), 90–95.</li>
+      </ol></article>
+    <article class="card"><h3>Project information</h3>
+      <dl class="info">
+        <dt>Report</dt><dd>Lab Report, Experiment No. 01</dd>
+        <dt>Course</dt><dd>DS 422 · Machine Learning Driven Data Analysis Lab I (DS Major)</dd>
+        <dt>Submitted by</dt><dd>Sharmarke Abdi · ID 232-35-808 · Section 41_DSE · FALL2026</dd>
+        <dt>Submitted to</dt><dd>Md. Fahad Hossain, Lecturer, Department of Software Engineering</dd>
+        <dt>University</dt><dd>Daffodil International University</dd>
+        <dt>Submission date</dt><dd>22/11/2026</dd>
+      </dl></article>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">Online Shoppers Purchasing Intention Prediction · DS 422 · Daffodil International University · <a href="#top">Back to top ↑</a></div></footer>
+<script src="js/script.js"></script>
+</body>
+</html>
