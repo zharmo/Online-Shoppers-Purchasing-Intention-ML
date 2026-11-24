@@ -25,3 +25,11 @@ Top features (Random Forest): PageValues, ExitRates, ProductRelated_Duration.
 Website Sections
 
 Hero · Overview · Problem & Objectives · Dataset · EDA · Methodology · Algorithms · Performance · Evaluation · Discussion · Conclusion · References
+
+Project Structure 
+online-shoppers-ml-website/ 
+├── index.html 
+├── css/style.css 
+├── js/script.js 
+├── assets/images/ (figures from the lab report) 
+└── README.md
