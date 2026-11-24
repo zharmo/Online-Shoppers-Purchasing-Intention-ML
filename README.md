@@ -33,3 +33,13 @@ online-shoppers-ml-website/
 ├── js/script.js 
 ├── assets/images/ (figures from the lab report) 
 └── README.md
+
+How to Run
+Download or clone this repository.
+Open index.html in any browser.
+
+No server, no installation and no internet are needed. Keep all folders together.
+
+Technologies
+
+HTML5 · CSS3 · JavaScript (no external libraries). Analysis was done in Python with Pandas, NumPy, Matplotlib, Seaborn and Scikit-learn.
