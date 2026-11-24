@@ -26,6 +26,23 @@ Website Sections
 
 Hero · Overview · Problem & Objectives · Dataset · EDA · Methodology · Algorithms · Performance · Evaluation · Discussion · Conclusion · References
 
+Project Structure 
+online-shoppers-ml-website/ 
+├── index.html 
+├── css/style.css 
+├── js/script.js 
+├── assets/images/ (figures from the lab report) 
+└── README.md
+
+How to Run
+Download or clone this repository.
+Open index.html in any browser.
+
+No server, no installation and no internet are needed. Keep all folders together.
+
+Technologies
+
+HTML5 · CSS3 · JavaScript (no external libraries). Analysis was done in Python with Pandas, NumPy, Matplotlib, Seaborn and Scikit-learn.
 Project Structure
 online-shoppers-ml-website/
 ├── index.html
