@@ -50,3 +50,10 @@ online-shoppers-ml-website/
 ├── js/script.js
 ├── assets/images/      (figures from the lab report)
 └── README.md
+
+References
+Sakar, C. O., & Kastro, Y. (2018). Online Shoppers Purchasing Intention Dataset. UCI Machine Learning Repository. https://doi.org/10.24432/C5F88Q
+Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. JMLR, 12, 2825–2830.
+McKinney, W. (2010). Data Structures for Statistical Computing in Python. Proceedings of the 9th Python in Science Conference.
+Harris, C. R., et al. (2020). Array programming with NumPy. Nature, 585, 357–362.
+Hunter, J. D. (2007). Matplotlib: A 2D Graphics Environment. Computing in Science & Engineering, 9(3), 90–95.
