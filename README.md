@@ -43,3 +43,10 @@ No server, no installation and no internet are needed. Keep all folders together
 Technologies
 
 HTML5 · CSS3 · JavaScript (no external libraries). Analysis was done in Python with Pandas, NumPy, Matplotlib, Seaborn and Scikit-learn.
+Project Structure
+online-shoppers-ml-website/
+├── index.html
+├── css/style.css
+├── js/script.js
+├── assets/images/      (figures from the lab report)
+└── README.md
