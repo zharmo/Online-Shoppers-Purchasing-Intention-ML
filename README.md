@@ -57,3 +57,8 @@ Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. JMLR, 12
 McKinney, W. (2010). Data Structures for Statistical Computing in Python. Proceedings of the 9th Python in Science Conference.
 Harris, C. R., et al. (2020). Array programming with NumPy. Nature, 585, 357–362.
 Hunter, J. D. (2007). Matplotlib: A 2D Graphics Environment. Computing in Science & Engineering, 9(3), 90–95.
+
+## Collaboration
+
+This project was developed collaboratively
+using GitHub and machine learning techniques.
